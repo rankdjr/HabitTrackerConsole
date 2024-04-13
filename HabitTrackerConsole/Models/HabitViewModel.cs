@@ -1,6 +1,6 @@
 ﻿namespace HabitTrackerConsole.Models;
 
-internal class HabitViewModel : Habit
+public class HabitViewModel : Habit
 {
     public string? DateCreated { get; set; }
     public string? LastLogEntryDate { get; set; }
