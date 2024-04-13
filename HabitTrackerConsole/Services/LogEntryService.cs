@@ -159,4 +159,28 @@ public class LogEntryService
 
         return logEntries;
     }
+
+    public bool DeleteAllLogEntries()
+    {
+        try
+        {
+            using (SQLiteConnection localDbConnection = dbContext.GetNewDatabaseConnection())
+            {
+                string sqlCommandString = @"
+                DELETE FROM tb_HabitLog";
+
+                using (var command = new SQLiteCommand(sqlCommandString, localDbConnection))
+                {
+                    int affectedRows = command.ExecuteNonQuery();
+                    return affectedRows > 0;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error deleting all log entries: {ex.Message}");
+            return false;
+        }
+    }
+
 }
