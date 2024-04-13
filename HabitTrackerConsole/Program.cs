@@ -1,7 +1,6 @@
 ﻿using HabitTrackerConsole.Application;
 using HabitTrackerConsole.Database;
 using HabitTrackerConsole.Services;
-using HabitTrackerConsole.Util;
 
 namespace HabitTracker;
 

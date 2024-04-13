@@ -11,27 +11,23 @@ public class DatabaseSeeder
 {
     private static Random _random = new Random();
 
-    // Generates random habit names
     private static string GetRandomHabitName()
     {
         string[] possibleNames = { "Exercise", "Reading", "Meditation", "Journaling", "Walking", "Programming" };
         return possibleNames[_random.Next(possibleNames.Length)];
     }
 
-    // Generates random dates within the last year
     private static DateTime GetRandomDate()
     {
         int days = _random.Next(365);
         return DateTime.Today.AddDays(-days);
     }
 
-    // Generates random quantity
     private static int GetRandomQuantity()
     {
         return _random.Next(1, 10);
     }
 
-    // Seed habits
     public static void SeedHabits(HabitService habitService, int count)
     {
         for (int i = 0; i < count; i++)
@@ -41,7 +37,6 @@ public class DatabaseSeeder
         }
     }
 
-    // Seed log entries
     public static void SeedLogEntries(LogEntryService logEntryService, HabitService habitService, int count)
     {
         var habits = habitService.GetAllHabitsOverviews();
