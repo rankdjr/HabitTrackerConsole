@@ -51,7 +51,7 @@ After launching the application, you will be greeted with the main menu. Use the
 
 ![image](https://github.com/rankdjr/HabitTrackerConsole/blob/master/screenshots/add-habit.PNG)
 
-![image](https://github.com/rankdjr/HabitTrackerConsole/blob/master/screenshots/screenshots/habits-sqlview.PNG)
+![image](https://github.com/rankdjr/HabitTrackerConsole/blob/master/screenshots/habits-sqlview.PNG)
 
 ### Logging an Entry
 
@@ -60,13 +60,13 @@ After launching the application, you will be greeted with the main menu. Use the
 3. Select a habit and enter the log details such as date and quantity.
 
 
-![image](https://github.com/rankdjr/HabitTrackerConsole/blob/master/screenshots/screenshots/manage-logs.PNG)
+![image](https://github.com/rankdjr/HabitTrackerConsole/blob/master/screenshots/manage-logs.PNG)
 
-![image](https://github.com/rankdjr/HabitTrackerConsole/blob/master/screenshots/screenshots/add-log-1.PNG)
+![image](https://github.com/rankdjr/HabitTrackerConsole/blob/master/screenshots/add-log-1.PNG)
 
-![image](https://github.com/rankdjr/HabitTrackerConsole/blob/master/screenshots/screenshots/add-log-2.PNG)
+![image](https://github.com/rankdjr/HabitTrackerConsole/blob/master/screenshots/add-log-2.PNG)
 
-![image](https://github.com/rankdjr/HabitTrackerConsole/blob/master/screenshots/screenshots/log-sqlview.PNG)
+![image](https://github.com/rankdjr/HabitTrackerConsole/blob/master/screenshots/log-sqlview.PNG)
 
 
 ## Acknowledgments
