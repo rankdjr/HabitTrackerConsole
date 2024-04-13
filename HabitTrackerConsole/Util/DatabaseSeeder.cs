@@ -1,23 +1,15 @@
-﻿using HabitTrackerConsole.Services;
-using System;
+﻿using HabitTrackerConsole.Models;
+using HabitTrackerConsole.Services;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HabitTrackerConsole.Util;
 
 public class DatabaseSeeder
 {
     private static Random _random = new Random();
+    private static string[] habitNames = { "Exercise", "Reading", "Meditation", "Journaling", "Walking", "Programming" };
 
-    private static string GetRandomHabitName()
-    {
-        string[] possibleNames = { "Exercise", "Reading", "Meditation", "Journaling", "Walking", "Programming" };
-        return possibleNames[_random.Next(possibleNames.Length)];
-    }
-
-    private static DateTime GetRandomDate()
+     private static DateTime GetRandomDate()
     {
         int days = _random.Next(365);
         return DateTime.Today.AddDays(-days);
@@ -28,23 +20,22 @@ public class DatabaseSeeder
         return _random.Next(1, 10);
     }
 
-    public static void SeedHabits(HabitService habitService, int count)
+    public static void SeedHabits(HabitService habitService)
     {
-        for (int i = 0; i < count; i++)
+        foreach (string habitName in habitNames)
         {
-            string habitName = GetRandomHabitName();
             habitService.InsertHabitIntoHabitsTable(habitName);
         }
     }
 
-    public static void SeedLogEntries(LogEntryService logEntryService, HabitService habitService, int count)
+    public static void SeedLogEntries(LogEntryService logEntryService, HabitService habitService, int numOfLogs)
     {
-        var habits = habitService.GetAllHabitsOverviews();
+        List <HabitViewModel> habits = habitService.GetAllHabitsOverviews();
         if (!habits.Any()) return;  // Make sure there are habits to log against
 
-        foreach (var habit in habits)
+        foreach (HabitViewModel habit in habits)
         {
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < numOfLogs; i++)
             {
                 string date = GetRandomDate().ToString("yyyy-MM-dd");
                 int quantity = GetRandomQuantity();

@@ -140,7 +140,7 @@ public class LogEntryService
                             var logEntry = new LogEntryViewModel
                             {
                                 RecordId = Convert.ToInt32(reader["RecordId"]),
-                                Date = DateTime.Parse(reader["Date"].ToString()),
+                                Date = DateTime.Parse(reader["Date"].ToString()!),
                                 HabitName = reader["HabitName"].ToString(),
                                 Quantity = Convert.ToInt32(reader["Quantity"])
                             };

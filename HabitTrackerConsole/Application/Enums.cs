@@ -12,6 +12,7 @@ public enum HabitMenuOption
     AddNewHabit,
     UpdateHabit,
     DeleteHabit,
+    DeleteAllHabits,
     ReturnToMainMenu
 }
 

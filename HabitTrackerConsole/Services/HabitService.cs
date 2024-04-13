@@ -107,6 +107,21 @@ public class HabitService
         }
     }
 
+    public bool DoesHabitExist(string habitName)
+    {
+        using (var connection = dbContext.GetNewDatabaseConnection())
+        {
+            string sqlCommand = "SELECT COUNT(1) FROM tb_Habit WHERE Name = @Name";
+            using (var command = new SQLiteCommand(sqlCommand, connection))
+            {
+                command.Parameters.AddWithValue("@Name", habitName);
+                connection.Open();
+                int count = Convert.ToInt32(command.ExecuteScalar());
+                return count > 0;
+            }
+        }
+    }
+
 
     public List<HabitViewModel> GetAllHabitsOverviews()
     {

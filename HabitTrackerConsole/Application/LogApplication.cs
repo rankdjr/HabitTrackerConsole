@@ -30,6 +30,9 @@ public class LogApplication
 
             switch (Enum.Parse<LogMenuOption>(option.Replace(" ", "")))
             {
+                case LogMenuOption.ViewLogEntries:
+                    ViewLogEntries();
+                    break;
                 case LogMenuOption.AddLogEntry:
                     AddLogEntry();
                     break;
@@ -115,7 +118,7 @@ public class LogApplication
             AnsiConsole.WriteLine("Update operation cancelled.");
         }
 
-        ApplicationHelper.ShowReturnToMainMenuPrompt();
+        ApplicationHelper.PauseForContinueInput();
     }
 
 
@@ -148,7 +151,7 @@ public class LogApplication
             AnsiConsole.WriteLine("Operation cancelled.");
         }
 
-        ApplicationHelper.ShowReturnToMainMenuPrompt();
+        ApplicationHelper.PauseForContinueInput();
     }
 
 
@@ -171,11 +174,11 @@ public class LogApplication
 
         foreach (var entry in entries)
         {
-            table.AddRow(entry.RecordId.ToString(), entry.Date.ToString("yyyy-MM-dd"), entry.HabitName, entry.Quantity.ToString());
+            table.AddRow(entry.RecordId.ToString(), entry.Date.ToString("yyyy-MM-dd"), entry.HabitName!, entry.Quantity.ToString());
         }
 
         AnsiConsole.Write(table);
-        ApplicationHelper.ShowReturnToMainMenuPrompt();
+        ApplicationHelper.PauseForContinueInput();
     }
 
     private void DeleteAllLogEntries()
@@ -195,6 +198,6 @@ public class LogApplication
             AnsiConsole.Write(new Markup("[red]Failed to delete log entries.[/]\n"));
         }
 
-        ApplicationHelper.ShowReturnToMainMenuPrompt();
+        ApplicationHelper.PauseForContinueInput();
     }
 }

@@ -1,4 +1,5 @@
-﻿using Spectre.Console;
+﻿using HabitTrackerConsole.Services;
+using Spectre.Console;
 using System.Text.RegularExpressions;
 
 namespace HabitTrackerConsole.Util;
@@ -22,7 +23,7 @@ public class ApplicationHelper
         return Regex.Replace(input, "([a-z])([A-Z])", "$1 $2");
     }
 
-    public static void ShowReturnToMainMenuPrompt()
+    public static void PauseForContinueInput()
     {
         AnsiConsole.WriteLine("Press any key to continue...");
         Console.ReadKey();
