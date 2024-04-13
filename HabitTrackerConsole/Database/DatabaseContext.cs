@@ -1,4 +1,6 @@
-﻿namespace HabitTrackerConsole.Database;
+﻿using System.Data.SQLite;
+
+namespace HabitTrackerConsole.Database;
 
 public class DatabaseContext
 {

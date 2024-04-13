@@ -1,4 +1,6 @@
-﻿namespace HabitTrackerConsole.Database;
+﻿using HabitTrackerConsole.Util;
+
+namespace HabitTrackerConsole.Database;
 
 public class DatabaseInitializer
 {

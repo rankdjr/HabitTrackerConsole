@@ -1,5 +1,6 @@
 ﻿using HabitTrackerConsole.Database;
 using HabitTrackerConsole.Models;
+using System.Data.SQLite;
 
 namespace HabitTrackerConsole.Services;
 
