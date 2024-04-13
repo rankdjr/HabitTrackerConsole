@@ -1,5 +1,5 @@
 
-# Habit Logger
+# HabitTrackerConsole
 
 Habit Logger is a console-based application designed to help users track and manage their habits effectively. This tool allows users to log their daily activities and monitor their progress over time, promoting consistent and mindful habit formation.
 
@@ -17,11 +17,11 @@ To run Habit Logger, ensure you have `.NET` installed on your system. Follow the
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourgithub/habit-logger.git
+   git clone https://github.com/yourgithub/HabitTrackerConsole.git
    ```
 2. Navigate to the project directory:
    ```bash
-   cd habit-logger
+   cd HabitTrackerConsole
    ```
 3. Build the project:
    ```bash
