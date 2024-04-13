@@ -4,15 +4,30 @@ using System.Data.SQLite;
 
 namespace HabitTrackerConsole.Services;
 
+/// <summary>
+/// LogEntryService manages all operations related to log entries for habits, including inserting, updating, and deleting log entries.
+/// It utilizes DatabaseContext for creating database connections and executing SQL commands.
+/// </summary>
 public class LogEntryService
 {
     private readonly DatabaseContext dbContext;
 
+    /// <summary>
+    /// Constructs a LogEntryService with a specified DatabaseContext for database operations.
+    /// </summary>
+    /// <param name="context">Database context to manage connections.</param>
     public LogEntryService(DatabaseContext context)
     {
         dbContext = context;
     }
 
+    /// <summary>
+    /// Inserts a new log entry into the database and returns a boolean indicating success.
+    /// </summary>
+    /// <param name="date">Date of the log entry.</param>
+    /// <param name="habitId">Habit ID associated with the log entry.</param>
+    /// <param name="quantity">Quantity noted in the log entry.</param>
+    /// <returns>True if the log entry was successfully added; otherwise, false.</returns>
     public bool InsertLogEntryIntoHabitLog(string date, int habitId, int quantity)
     {
         try
@@ -52,6 +67,12 @@ public class LogEntryService
         }
     }
 
+    /// <summary>
+    /// Updates an existing log entry's quantity and returns a boolean indicating if the update was successful.
+    /// </summary>
+    /// <param name="id">The ID of the log entry to update.</param>
+    /// <param name="newQuantity">The new quantity for the log entry.</param>
+    /// <returns>True if the update was successful; otherwise, false.</returns>
     public bool UpdateLogEntryInHabitsLog(int id, int newQuantity)
     {
         try
@@ -85,6 +106,11 @@ public class LogEntryService
         }
     }
 
+    /// <summary>
+    /// Deletes a specific log entry from the database and returns a boolean indicating if the deletion was successful.
+    /// </summary>
+    /// <param name="id">The ID of the log entry to delete.</param>
+    /// <returns>True if the log entry was successfully deleted; otherwise, false.</returns>
     public bool DeleteLogEntryFromHabitsLog(int id)
     {
         try
@@ -116,6 +142,10 @@ public class LogEntryService
         }
     }
 
+    /// <summary>
+    /// Retrieves all log entries from the database view and returns them as a list of LogEntryViewModel.
+    /// </summary>
+    /// <returns>A list of LogEntryViewModel representing each log entry.</returns>
     public List<LogEntryViewModel> GetAllLogEntriesFromHabitsLogView()
     {
         List<LogEntryViewModel> logEntries = new List<LogEntryViewModel>();
@@ -160,6 +190,10 @@ public class LogEntryService
         return logEntries;
     }
 
+    /// <summary>
+    /// Deletes all log entries from the database and returns a boolean indicating if the operation was successful.
+    /// </summary>
+    /// <returns>True if all log entries were successfully deleted; otherwise, false.</returns>
     public bool DeleteAllLogEntries()
     {
         try

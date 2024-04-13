@@ -4,15 +4,28 @@ using System.Data.SQLite;
 
 namespace HabitTrackerConsole.Services;
 
+/// <summary>
+/// HabitService handles all database operations related to habits, including CRUD operations and queries.
+/// It uses the DatabaseContext to create connections and execute SQL commands for managing habit data.
+/// </summary>
 public class HabitService
 {
     private readonly DatabaseContext dbContext;
 
+    /// <summary>
+    /// Constructs a HabitService with a specified DatabaseContext for database operations.
+    /// </summary>
+    /// <param name="context">Database context to manage connections.</param>
     public HabitService(DatabaseContext context)
     {
         dbContext = context;
     }
 
+    /// <summary>
+    /// Inserts a new habit into the database and returns a boolean indicating success.
+    /// </summary>
+    /// <param name="name">Name of the habit to insert.</param>
+    /// <returns>True if the habit was successfully added; otherwise, false.</returns>
     public bool InsertHabitIntoHabitsTable(string name)
     {
         try
@@ -47,6 +60,12 @@ public class HabitService
         }
     }
 
+    /// <summary>
+    /// Updates the name of an existing habit and returns a boolean indicating if the update was successful.
+    /// </summary>
+    /// <param name="habitId">The ID of the habit to update.</param>
+    /// <param name="newName">The new name for the habit.</param>
+    /// <returns>True if the update was successful; otherwise, false.</returns>
     public bool UpdateHabit(int habitId, string newName)
     {
         try
@@ -71,6 +90,11 @@ public class HabitService
         }
     }
 
+    /// <summary>
+    /// Deletes a habit and its associated log entries from the database, using transactions to ensure data integrity.
+    /// </summary>
+    /// <param name="habitId">The ID of the habit to delete.</param>
+    /// <returns>True if the habit and its log entries were successfully deleted; otherwise, false.</returns>
     public bool DeleteHabit(int habitId)
     {
         try
@@ -107,6 +131,11 @@ public class HabitService
         }
     }
 
+    /// <summary>
+    /// Checks if a habit with the specified name exists in the database.
+    /// </summary>
+    /// <param name="habitName">Name of the habit to check.</param>
+    /// <returns>True if the habit exists; otherwise, false.</returns>
     public bool DoesHabitExist(string habitName)
     {
         using (var connection = dbContext.GetNewDatabaseConnection())
@@ -122,7 +151,10 @@ public class HabitService
         }
     }
 
-
+    /// <summary>
+    /// Retrieves a list of all habits with their details and log entry summaries.
+    /// </summary>
+    /// <returns>A list of HabitViewModel representing each habit and its associated data.</returns>
     public List<HabitViewModel> GetAllHabitsOverviews()
     {
         List<HabitViewModel> habitOverviews = new List<HabitViewModel>();
