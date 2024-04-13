@@ -144,7 +144,6 @@ public class HabitService
             using (var command = new SQLiteCommand(sqlCommand, connection))
             {
                 command.Parameters.AddWithValue("@Name", habitName);
-                connection.Open();
                 int count = Convert.ToInt32(command.ExecuteScalar());
                 return count > 0;
             }

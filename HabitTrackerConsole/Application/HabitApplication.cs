@@ -89,6 +89,7 @@ public class HabitApplication
         if (habits.Count == 0)
         {
             ApplicationHelper.AnsiWriteLine(new Markup("[red]No habits available to update.[/]"));
+            ApplicationHelper.PauseForContinueInput();
             return;
         }
 
@@ -124,6 +125,7 @@ public class HabitApplication
         if (habits.Count == 0)
         {
             ApplicationHelper.AnsiWriteLine(new Markup("[red]No habits available to delete.[/]"));
+            ApplicationHelper.PauseForContinueInput();
             return;
         }
 
@@ -159,12 +161,14 @@ public class HabitApplication
         if (habits.Count == 0)
         {
             ApplicationHelper.AnsiWriteLine(new Markup("[red]No habits available to delete.[/]"));
+            ApplicationHelper.PauseForContinueInput();
             return;
         }
 
         if (!AnsiConsole.Confirm("Are you sure you want to delete ALL habits and associated log entries?"))
         {
             ApplicationHelper.AnsiWriteLine(new Markup("[yellow]Operation cancelled.[/]"));
+            ApplicationHelper.PauseForContinueInput();
             return;
         }
 
@@ -178,9 +182,8 @@ public class HabitApplication
                 }
             });
 
-        ApplicationHelper.AnsiWriteLine(new Markup("[green]Habit and all related log entries successfully deleted![/]"));
-        AnsiConsole.WriteLine("Press any key to return to the main menu...");
-        Console.ReadKey();
+        ApplicationHelper.AnsiWriteLine(new Markup("[green]All Habits with related log entries successfully deleted![/]"));
+        ApplicationHelper.PauseForContinueInput();
     }
 
     /// <summary>
@@ -192,6 +195,7 @@ public class HabitApplication
         if (habits.Count == 0)
         {
             ApplicationHelper.AnsiWriteLine(new Markup("[yellow]No habits found![/]"));
+            ApplicationHelper.PauseForContinueInput();
         }
         else
         {
@@ -201,23 +205,21 @@ public class HabitApplication
             table.Title("[yellow]Habit Overview[/]");
 
             // Adding columns with improved styling
-            table.AddColumn(new TableColumn("[bold underline]ID[/]").Centered());
-            table.AddColumn(new TableColumn("[bold underline]Name[/]"));
-            table.AddColumn(new TableColumn("[bold underline]Date Created[/]").Centered());
-            table.AddColumn(new TableColumn("[bold underline]Last Log Entry Date[/]").Centered());
-            table.AddColumn(new TableColumn("[bold underline]Total Logs[/]").Centered());
+            table.AddColumn(new TableColumn("[bold underline]ID[/]").LeftAligned());
+            table.AddColumn(new TableColumn("[bold underline]Name[/]").Centered());
+            table.AddColumn(new TableColumn("[bold underline]Date Created[/]").LeftAligned());
+            table.AddColumn(new TableColumn("[bold underline]Last Log Entry Date[/]").LeftAligned());
+            table.AddColumn(new TableColumn("[bold underline]Total Logs[/]").RightAligned());
 
             // Add rows with conditional formatting
             foreach (var habit in habits)
             {
-                var totalLogs = habit.TotalLogs;
-                var color = totalLogs > 10 ? "red" : "green";  // Determine color based on log count
                 table.AddRow(
                     habit.HabitId.ToString(),
                     habit.HabitName!,
                     habit.DateCreated!,
                     habit.LastLogEntryDate ?? "N/A",
-                    $"[bold {color}]{habit.TotalLogs}[/]");  // Apply color styling inline
+                    $"[bold {"green"}]{habit.TotalLogs}[/]");  // Apply color styling inline
             }
 
             AnsiConsole.Write(table);
@@ -235,7 +237,7 @@ public class HabitApplication
         string habitName = string.Empty;
         do
         {
-            habitName = AnsiConsole.Ask<string>(promptMessage);
+            habitName = AnsiConsole.Ask<string>(promptMessage).Trim();
             if (string.IsNullOrWhiteSpace(habitName))
             {
                 ApplicationHelper.AnsiWriteLine(new Markup("[yellow]Habit name cannot be empty. Please enter a valid name.[/]"));
